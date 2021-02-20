@@ -66,7 +66,7 @@ function buildCharts(sample) {
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otuIds = chartResult.otu_ids;
-    var otuLabels = chartResult.otu_lables;
+    var otuLabels = chartResult.otu_labels;
     var sampleValues = chartResult.sample_values;
 
     // 7. Create the yticks for the bar chart.
@@ -98,21 +98,20 @@ function buildCharts(sample) {
 
 
     // 1. Create the trace for the bubble chart.
-    var trace1 = [{
+    var trace1 = {
       x: otuIds,
       y: sampleValues,
       mode: 'markers',
       text: otuLabels,
       marker: {
-        color: otuIds,
         size: sampleValues,
-        colorscale:"Electric"
+        color: otuIds,
+        colorscale: 'Electric'
       }
-    }];
-        
+    };
+          
     var bubbleData = [trace1
-   
-    ];
+       ];
 
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
@@ -120,8 +119,8 @@ function buildCharts(sample) {
       xaxis: {title: "OTU ID"},
       margins: {t:10},
       hovermode: 'closest',
-      height: 600,
-      width: 650
+      width: 1000,
+      height: 500
            
     };
 
