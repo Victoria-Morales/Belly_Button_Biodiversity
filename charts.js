@@ -61,22 +61,26 @@ function buildCharts(sample) {
     var chartSamples = data.samples;
     // 4. Create a variable that filters the samples for the object with the desired sample number.
     var chartArray = chartSamples.filter(sampleObj => sampleObj.id == sample);
+
+    // 1. Create a variable that filters the metadata array for the object with the desired sample number.
+    var metaArray = data.metadata;
+    var metaFilter = metaArray.filter(metaObj => metaObj.id == sample);
+    
     //  5. Create a variable that holds the first sample in the array.
     var chartResult = chartArray[0];
+
+    // 2. Create a variable that holds the first sample in the metadata array.
+    var metaResult = metaFilter[0];
+
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otuIds = chartResult.otu_ids;
     var otuLabels = chartResult.otu_labels;
     var sampleValues = chartResult.sample_values;
 
-    // 1. Create a variable that filters the metadata array for the object with the desired sample number.
-    var metaFilter = metadata.filter(sampleObj => sampleObj.id == sample);
-
-    // 2. Create a variable that holds the first sample in the metadata array.
-    var metaResult = metaFilter[0];
-  
+      
     // 3. Create a variable that holds the washing frequency.
-    var washFreq = metaFilter.wrfreq;
+    var washFreq = parseFloat(metaResult.wfreq);
 
 
     // 7. Create the yticks for the bar chart.
@@ -140,24 +144,24 @@ function buildCharts(sample) {
 
     // 4. Create the trace for the gauge chart.
     var trace2 = {
-      type: "indicator",
+      domain: { x: [0,1], y: [0,1]},
+      type: "indicator",  
       mode: "gauge+number",
       value: washFreq,
-      title: {text: 'Belly Button Washing Frequency<br>Scrubs per Week'},
+      title: {text: "Belly Button Washing Frequency<br>Scrubs per Week"},
       gauge: {
         axis: {range: [0, 10]},
         bar: {color: "black"},
         steps: [
-          { range: [0, 1], color: "lightpink" },
-          { range: [2, 3], color: "hotpink" },
-          { range: [4, 5], color: "deeppink" },
-          { range: [6, 7], color: "fuschia" },
-          { range: [8, 9], color: "darkviolet" }
+          { range: [0,2], color: "lightpink" },
+          { range: [2,4], color: "hotpink" },
+          { range: [4,6], color: "deeppink" },
+          { range: [6,8], color: "fuchsia" },
+          { range: [8,10], color: "darkviolet" }
         ]
       }
     };  
  
-
     var gaugeData = [trace2
      
     ];
@@ -166,7 +170,7 @@ function buildCharts(sample) {
     var gaugeLayout = { 
       width: 500,
       height: 400,
-      margin: { t: 25, r: 25, l: 25, b: 25 },
+      margin: { t: 0, b: 0 },
            
     };
 
