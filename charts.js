@@ -96,6 +96,7 @@ function buildCharts(sample) {
       y: yticks,
       type: "bar",
       orientation: 'h'
+            
     }
 
     var barData = [trace
@@ -103,7 +104,8 @@ function buildCharts(sample) {
     // 9. Create the layout for the bar chart. 
     var barLayout = {
       title: "Top 10 Bacteria Cultures Found",
-       
+      paper_bgcolor: "fuchsia",
+      plot_bgcolor: "fuchsia"
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout);
@@ -133,7 +135,9 @@ function buildCharts(sample) {
       margins: {t:10},
       hovermode: 'closest',
       width: 1000,
-      height: 500
+      height: 500,
+      plot_bgcolor: "pink",
+      paper_bgcolor: "pink"
            
     };
 
@@ -171,6 +175,7 @@ function buildCharts(sample) {
       width: 500,
       height: 400,
       margin: { t: 0, b: 0 },
+      paper_bgcolor: "violet",
            
     };
 
